@@ -1,0 +1,32 @@
+name: Docker Image CI
+
+on:
+  push:
+    # Sequence of patterns matched against refs/tags
+    tags:
+      - '*' # Push events to matching v*, i.e. v1.0, v20.15.10
+jobs:
+  docker:
+    strategy:
+      matrix:
+        container_version: ['2019', '2022']
+    runs-on: windows-${{ matrix.container_version }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Docker Build
+        shell: powershell
+        env:
+          OSVERSION: ltsc${{ matrix.container_version }}
+          RELVERSION: ${{ github.head_ref || github.ref_name }} 
+        run: |
+          docker build --build-arg "NANOSERVER_LTSCVERSION=$env:OSVERSION" --build-arg "VECTOR_VERSION=$env:RELVERSION" -t "chrismckee/vector-nt:$env:RELVERSION-windowsserver.nano.$env:OSVERSION" -t "chrismckee/vector-nt:latest-windowsserver.nano.$env:OSVERSION" .
+          docker push "chrismckee/vector-nt:latest-windowsserver.nano.$env:OSVERSION"
+          docker push "chrismckee/vector-nt:$env:RELVERSION-windowsserver.nano.$env:OSVERSION"
