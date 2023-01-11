@@ -1,7 +1,7 @@
 # escape=`
-ARG NANOSERVER_LTSCVERSION=ltsc2019
+ARG OSVERSION=nanoserver:ltsc2019
 
-FROM mcr.microsoft.com/windows/nanoserver:$NANOSERVER_LTSCVERSION
+FROM mcr.microsoft.com/windows/$OSVERSION
 
 ARG VECTOR_VERSION=0.26.0
 

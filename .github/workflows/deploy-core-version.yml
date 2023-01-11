@@ -27,6 +27,6 @@ jobs:
           OSVERSION: ltsc${{ matrix.container_version }}
           RELVERSION: ${{ github.head_ref || github.ref_name }} 
         run: |
-          docker build --build-arg "OSVERSION=nanoserver:$env:OSVERSION" --build-arg "VECTOR_VERSION=$env:RELVERSION" -t "chrismckee/vector-nt:$env:RELVERSION-windowsserver.nano.$env:OSVERSION" -t "chrismckee/vector-nt:latest-windowsserver.nano.$env:OSVERSION" .
-          docker push "chrismckee/vector-nt:latest-windowsserver.nano.$env:OSVERSION"
-          docker push "chrismckee/vector-nt:$env:RELVERSION-windowsserver.nano.$env:OSVERSION"
+          docker build --build-arg "OSVERSION=servercore:$env:OSVERSION" --build-arg "VECTOR_VERSION=$env:RELVERSION" -t "chrismckee/vector-nt:$env:RELVERSION-windowsserver.servercore.$env:OSVERSION" -t "chrismckee/vector-nt:latest-windowsserver.servercore.$env:OSVERSION" .
+          docker push "chrismckee/vector-nt:latest-windowsserver.servercore.$env:OSVERSION"
+          docker push "chrismckee/vector-nt:$env:RELVERSION-windowsserver.servercore.$env:OSVERSION"

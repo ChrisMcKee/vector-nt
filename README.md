@@ -18,3 +18,7 @@ No ports are exposed by default in the container image.
 | Arg | Default |
 |NANOSERVER_LTSCVERSION | ltsc2019 |
 | VECTOR_VERSION | 0.26.0|
+
+
+- https://aws.amazon.com/blogs/containers/streaming-logs-from-amazon-eks-windows-pods-to-amazon-cloudwatch-logs-using-fluentd/
+- https://github.com/awslabs/amazon-eks-ami/blob/master/log-collector-script/windows/eks-log-collector.ps1
