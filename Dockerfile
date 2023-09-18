@@ -3,7 +3,7 @@ ARG OSVERSION=nanoserver:ltsc2019
 
 FROM mcr.microsoft.com/windows/$OSVERSION
 
-ARG VECTOR_VERSION=0.26.0
+ARG VECTOR_VERSION=0.32.1
 
 ADD https://github.com/vectordotdev/vector/releases/download/v$VECTOR_VERSION/vector-$VECTOR_VERSION-x86_64-pc-windows-msvc.zip /vector/vector.zip
 
